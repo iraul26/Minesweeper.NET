@@ -1,0 +1,50 @@
+﻿@model CST350Milestone5.Models.GameBoardModel
+
+@{
+    string[] numberedCells = new string[] { "cell0.png", "cell1.png", "cell2.png", "cell3.png", "cell4.png", "cell5.png", "cell6.png", "cell7.png", "cell8.png" };
+    string unvisitedCell = "cellunvisited.png";
+    string bombCell = "cellbomb.png";
+    string flaggedCell = "cellflag.png";
+
+    int remainingCells = 0;
+    for (int x = 0; x < Model.Width; x++)
+        for (int y = 0; y < Model.Height; y++)
+            if (!Model.CellGrid[x][y].CellLive && !Model.CellGrid[x][y].CellVisited)
+                remainingCells++;
+}
+
+@for (int row = 0; row < Model.Height; row++)
+{
+    @for (int column = 0; column < Model.Width; column++)
+    {
+        @if (!Model.CellGrid[column][row].CellVisited)
+        {
+            @if (Model.CellGrid[column][row].CellFlagged)
+            {
+                <button class="game-cell-class seamless-class" oncontextmenu="flag(event, @column, @row)" name="@column|@row">
+                    <img class="game-img-class seamless-class" src="~/img/@flaggedCell" />
+                </button>
+            }
+            else
+            {
+                <button class="game-cell-class seamless-class" onclick="fill(@column, @row)" oncontextmenu="flag(event, @column, @row)" name="@column|@row">
+                    <img class="game-img-class seamless-class" src="~/img/@unvisitedCell" />
+                </button>
+            }
+        }
+        else
+        {
+            <div class="game-cell-class seamless-class">
+                @if (Model.CellGrid[column][row].CellLive)
+                {
+                    <img class="game-img-class seamless-class" src="~/img/@bombCell" />
+                }
+                @if (!Model.CellGrid[column][row].CellLive)
+                {
+                    <img class="game-img-class seamless-class" src="~/img/@numberedCells[Model.CellGrid[column][row].LiveNeighbors]" />
+                }
+            </div>
+        }
+    }
+}
+<p>Remaining: @remainingCells</p>

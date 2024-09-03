@@ -1,0 +1,61 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Game Result</title>
+
+    <style>
+
+        .game-over {
+            /* create a line break after the game over message*/
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        button {
+            /* button styling */
+            background-color: white;
+            color:black;
+            padding: 15px 32px;
+            text-align: center;
+            display: inline-block;
+            font-size: 16px;
+            height:60px;
+            width: 180px;
+        }
+
+        .button-group {
+            /* make the two buttons on the screen next to each other rathar than on top of one another */
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            /* change the color and border of the button when hovered */
+            background-color:black;
+            color:white;
+            border: 1px solid white;
+        }
+    </style>
+</head>
+<body>
+    <div class="game-over">
+        <h1>Game Over, you clicked on a bomb! Goodluck next time</h1>
+        <br />
+        <div class="button-group">
+            <form method="post" action="/Minesweeper">
+                <button id="play_again" type="submit">Play Again</button>
+                <br />
+            </form>
+            <form method="post" action="/Minesweeper/Exit">
+                <button id="exit" type="submit">Exit</button>
+            </form>
+        </div>
+    </div>
+    
+</body>
+</html>

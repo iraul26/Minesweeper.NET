@@ -1,0 +1,75 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Game Result</title>
+
+    <style>
+        .game-won {
+            /* line break afer game won message*/
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        button {
+            /* button styling for each button on screen*/
+            background-color: white;
+            color: black;
+            padding: 15px 32px;
+            text-align: center;
+            display: inline-block;
+            font-size: 16px;
+            height: 60px;
+            width: 180px;
+        }
+
+        button:hover {
+            /* button change color when hovered */
+            background-color: black;
+            color: white;
+            border: 1px solid white;
+        }
+
+        .button-group {
+            /* the two buttons play again and exit same line rather than on top of one another */
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .button-group button {
+            /* the 2 buttons have a little space next to each other*/
+            margin: 0 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="game-won">
+        <h1>Congratulations, You won!</h1>
+        <form>
+            <div class="mb-3">
+                <label for="firstname" class="form-label">First Name</label>
+                <input type="text" class="form-control" id="firstname" placeholder="enter name">
+            </div>
+            <div class="mb-3">
+                <label for="score" class="form-label">Score</label>
+                <input type="text" class="form-control" id="score" value="999999999" readonly>
+            </div>
+            <div class="save-score">
+                <button type="submit" value="save" asp-controller="#" asp-action="#">Save Score</button>
+            </div>
+            <div class="button-group">
+                <div class="play-again">
+                    <button id="play-again" type="submit" action="/Minesweeper">Play Again</button>
+                </div>
+                <div class="exit">
+                    <button id="exit" type="submit" asp-controller="Minesweeper" asp-action="Exit">Exit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
